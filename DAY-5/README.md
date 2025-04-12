@@ -1,5 +1,6 @@
 # Day 5 - Kubernetes & Container Orchestration (02/04/2025)
-
+## Github link: https://github.com/shravyaalake/Retail-App_kubernetes.git
+## Github link : https://github.com/shravyaalake/shravya-k8s-manifests.git
 ## 🚨 Problems with Containers
 
 While containers (like Docker) are efficient for lightweight application deployment, they come with several limitations:
@@ -28,6 +29,41 @@ Kubernetes is a **container orchestration tool** that solves the above issues by
 
 > Kubernetes is **platform-independent** and can run on any cloud (AWS, GCP, Azure) or on-premises.
 
+---
+## ☸️ Kubernetes Concepts
+
+### 🧱 Core Objects
+
+- **Pods**: Smallest deployable units in Kubernetes.
+- **ReplicaSets**: Ensure specified number of pods are always running.
+- **Deployments**: Manage ReplicaSets; used for scaling, rolling updates.
+- **Namespaces**: Provide logical separation between Kubernetes resources.
+
+### 🗂️ Common Namespaces
+
+| Namespace           | Description                              |
+|---------------------|------------------------------------------|
+| `default`           | Default workspace                        |
+| `kube-system`       | Core system processes                    |
+| `kube-public`       | Public cluster info                      |
+| `kube-node-lease`   | Node heartbeats                          |
+
+```bash
+kubectl create ns <namespace>
+kubectl get pods -n <namespace>
+```
+---
+### 🌐 Services in Kubernetes
+
+| Type           | Description                                             |
+|----------------|---------------------------------------------------------|
+| `ClusterIP`    | Exposes service internally within the cluster           |
+| `NodePort`     | Exposes service on a static port on each node           |
+| `LoadBalancer` | Provisions external IP through cloud provider           |
+
+```bash
+kubectl get svc -n <namespace>
+```
 ---
 
 ## 🛠️ Setup Steps

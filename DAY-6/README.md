@@ -149,6 +149,22 @@ kubectl get svc -n <namespace-name>
       http://<EC2-Public-IP>:<Port>
 - Make sure security group allows inbound access to the port defined in your service.
 
+##  Cluster Creation in Kubernetes
+- Cluster includes Master Node (API Server, etcd, Controller, Scheduler) and Worker Node (Kubelet, Kube-proxy, Docker).
+- AWS EKS Cluster:
+  - `eksctl create cluster --name devops-cluster --region us-east-1 --nodes 2`
+  - `kubectl get nodes`
+
+##  Grafana – Visualization Tool
+- Used for metrics dashboards and visual alerts.
+- Deploy via Helm: `helm install grafana grafana/grafana`
+- Port Forward: `kubectl port-forward service/grafana 3000:80`
+- Login: admin / admin
+
+##  Prometheus + Grafana Integration
+- Grafana > Add data source > Select Prometheus
+- URL: `http://prometheus-server.monitoring.svc.cluster.local`
+
 ## ✅ Summary
 
 ### 🧩 Kubernetes Core Concepts Covered:
@@ -174,5 +190,21 @@ kubectl get svc -n <namespace-name>
   - **Grafana**: Visualizes metrics in the form of graphs, charts, and dashboards.
 
 ---
+### 🔗 References
+
+  -  Kubernetes Official Documentation
+
+  -  Prometheus Documentation
+
+  -  Grafana Documentation
+---
 
 > 📌 These are essential building blocks for deploying and managing scalable, observable, and production-ready Kubernetes applications.
+---
+### 📝 Conclusion
+
+- This Kubernetes setup allows you to effectively deploy, manage, and scale applications. Key concepts like Pods, Deployments, ReplicaSets, and Services are critical in the Kubernetes ecosystem for running applications in a cloud-native way.
+
+- Additionally, monitoring your application with tools like Prometheus and Grafana is crucial for real-time insight into the health of your applications and infrastructure.
+
+- By following best practices and utilizing Kubernetes’ extensive features, you can ensure high availability, scalability, and efficiency for your containerized applications.

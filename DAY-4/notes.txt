@@ -1,0 +1,149 @@
+Docker & Microservices Overview
+
+1. What is Docker?
+
+    Docker is a containerization tool that helps create portable, platform-independent applications.
+
+    It uses OS-level virtualization to isolate applications and efficiently utilize system resources.
+
+    Benefits:
+
+        Reduces server costs.
+
+        Applications can run anywhere (development, testing, production environments).
+
+2. Architecture Shift: Monolithic to Microservices
+
+Monolithic Applications
+
+    Single-tier architecture where the Web server, Application server, and Database server run together.
+
+    Issues:
+
+        Tightly coupled components.
+
+        Failure in one module can bring down the entire application.
+
+Microservices Architecture
+
+    Application is broken down into independent services or modules.
+
+    Each service runs in its own container, using:
+
+        Individual Dockerfile
+
+        Docker image
+
+        Docker container
+
+Advantages:
+
+    Loosely coupled services.
+
+    Failure in one service does not affect others.
+
+Challenges:
+
+    Each service may require a separate server, increasing infrastructure costs.
+
+    Docker helps mitigate this by allowing multiple services to run in isolated containers on the same server.
+
+3. Key Docker Concepts
+
+Container
+
+    A lightweight virtual environment to run applications.
+
+    Isolated from the host and other containers, but shares the host OS kernel.
+
+Dockerfile
+
+    A text file with step-by-step instructions to build a Docker image.
+
+Docker Image
+
+    A read-only template created from a Dockerfile.
+
+    Contains:
+
+        Source code
+
+        Dependencies
+
+        Configurations
+
+        Libraries
+
+        Platform details
+
+    Follows the principle: "Build once, run anywhere."
+
+Docker Hub
+
+    A cloud-based registry to store and share Docker images.
+
+4. Common Docker Commands
+
+    docker ps – Shows running containers.
+
+    docker ps -a – Shows all containers (running and stopped).
+
+    docker run -d – Runs a container in detached or daemon mode.
+
+5. Port Numbers in Docker
+
+    Valid port range: 0 – 65535
+
+    Port numbers define how applications inside containers are accessed via a browser.
+
+    Example: Application running on port 3002.
+
+6. Instructions in a Dockerfile
+
+    FROM – Defines base or parent image (must be the first instruction).
+
+    COPY – Copies files or folders from local machine into Docker image.
+
+    ADD – Similar to COPY but also supports downloading content from URLs.
+
+    RUN – Executes commands to install dependencies.
+
+    .dockerignore – Excludes files from being copied into the Docker image.
+
+    CMD – Default command to run the application (can accept runtime arguments).
+
+    ENTRYPOINT – Main entry point of the application (fixed, no runtime args).
+
+    EXPOSE – Specifies which port the application runs on.
+
+    ENV – Defines environment variables.
+
+    WORKDIR – Sets the working directory inside the container.
+
+    USER – Sets or switches the user within the container.
+
+7. Deployment Preparation (As a DevOps Engineer)
+
+To deploy Docker containers:
+
+    Identify the base image for the application.
+
+    Create a working directory.
+
+    Copy dependencies into the Docker image.
+
+    Install required packages.
+
+    Copy the source code into the image.
+
+    Expose the required port number.
+
+    Define the startup command using CMD or ENTRYPOINT.
+
+    Also gather:
+
+        Environment variables
+
+        Port numbers
+
+        Database endpoints

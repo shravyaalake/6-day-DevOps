@@ -1,0 +1,51 @@
+Day 6 - Kubernetes Continuation, Namespaces, Cluster Creation, Grafana, and Prometheus
+ Kubernetes – Continuation
+- Kubernetes is a container orchestration platform for managing, scaling, and deploying containerized applications.
+- Key concepts:
+  - Pod: Smallest deployable unit in Kubernetes.
+  - ReplicaSet: Maintains a stable set of replica Pods running at any given time.
+  - Deployment: Manages ReplicaSets and provides declarative updates to Pods.
+
+
+ Namespace in Kubernetes
+- Namespaces divide cluster resources for multiple users/projects.
+- Used in large or multi-team environments to isolate resources.
+- Useful for RBAC, multi-tenancy, and organization.
+  - Create Namespace: kubectl create namespace dev
+  - View Namespaces: kubectl get namespaces
+  - Deploy in Namespace: kubectl create deployment nginx --image=nginx --namespace=dev
+  - Delete Namespace: kubectl delete namespace dev
+
+
+ Cluster Creation in Kubernetes
+- Cluster = Master Node + Worker Nodes
+- Master Node components: API Server, etcd, Controller Manager, Scheduler
+- Worker Node components: Kubelet, Kube-proxy, Container Runtime
+- Types of Clusters: On-Premise and Cloud-Managed (e.g., AWS EKS)
+- AWS EKS Cluster Creation:
+  1. Create IAM role
+  2. Install eksctl and kubectl
+  3. eksctl create cluster --name devops-cluster --region us-east-1 --nodes 2
+  4. kubectl get nodes
+
+
+ Grafana – Visualization Tool
+- Grafana is used to visualize metrics and create dashboards.
+- Supports various data sources like Prometheus, MySQL, etc.
+- Deployment using Helm: helm install grafana grafana/grafana
+- Access via: kubectl port-forward service/grafana 3000:80
+- Default login: admin / admin
+
+
+ Prometheus – Monitoring Tool
+- Prometheus collects and stores time series data via a pull model.
+- Uses PromQL for querying.
+- Helm Deployment: helm install prometheus prometheus-community/prometheus
+- Access via: kubectl port-forward svc/prometheus-server 9090:80
+- Verify: kubectl get pods -n monitoring
+
+
+ Integration: Prometheus + Grafana
+- Prometheus serves as a data source for Grafana.
+- Grafana Settings > Add data source > Choose Prometheus
+- URL: http://prometheus-server.monitoring.svc.cluster.local
